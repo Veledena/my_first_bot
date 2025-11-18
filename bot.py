@@ -35,10 +35,14 @@ async def sur_name_patr(message: Message):
     for t in text:
         try:
             new_text += letters[t.upper()]
-        except:
+            print(f'Обработка {t} -> {letters[t.upper()]}')
+        except KeyError:
             new_text = 'Недопустимый символ в ФИО'
+            print(f'Ошибка на символе: {t}')
+            break
     logging.info(f'{user_name} {user_id} написал(а): {text}')
-    await message.answer(text=new_text.title())
+
+    await message.answer(new_text.title() if new_text != 'Недопустимый символ в ФИО' else new_text)
 
 if __name__ == '__main__':
     dp.run_polling(bot)
