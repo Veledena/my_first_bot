@@ -35,10 +35,8 @@ async def sur_name_patr(message: Message):
     for t in text:
         try:
             new_text += letters[t.upper()]
-            print(f'Обработка {t} -> {letters[t.upper()]}')
-        except KeyError:
+        except:
             new_text = 'Недопустимый символ в ФИО'
-            print(f'Ошибка на символе: {t}')
             break
     logging.info(f'{user_name} {user_id} написал(а): {text}')
 
